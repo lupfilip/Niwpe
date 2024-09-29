@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="image/wn.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niwpe</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="container" id="title">Niwpe</h1>
+    <div class="container" id="field"></div>
+    <p class="container" id="boardSize"></p>
+    <div class="container" id="direction">
+        <button id="north" type="button" onclick="moveScreen(this);">NORTH</button>
+        <button id="south" type="button" onclick="moveScreen(this);">SOUTH</button>
+        <button id="west" type="button" onclick="moveScreen(this);">WEST</button>
+        <button id="east" type="button" onclick="moveScreen(this);">EAST</button>
+    </div>
+    <div class="container" id="options">
+        <label for="size">
+            Board size <b>[(2*n+2) * (2*n+2)]:</b> <input id="size" type="number" value="1">
+        </label>
+        <button id="newGame" type="button">New Game</button>
+    </div>
+    <p class="container" id="moves"></p>
+
+    <script src="script.js"></script>
+</body>
+</html>
