@@ -61,6 +61,7 @@ function createBoard(field) {
 function newGame() {
     createBoard(document.getElementById("field"));
     fillBoard();
+    selected = undefined;
     onTurn = 0;
     generateMoves();
     game = [];
@@ -104,6 +105,14 @@ function displayGrid() {
             }
 
             board.appendChild(item);
+        }
+    }
+
+    if(selected !== undefined) {
+        document.querySelector('[square-id="'+selected+'"]').style.backgroundColor = "rgb(255, 255, 32)";
+        let move = moves.filter(value => value[0] === selected);
+        for(let i = 0; i < move.length; i++) {
+            document.querySelector('[square-id="'+move[i][1]+'"]').style.backgroundColor = "rgb(255, 192, 32)";
         }
     }
 }
