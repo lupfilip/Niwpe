@@ -87,6 +87,7 @@ function displayGrid() {
     for(let i = Y[0]; i < Y[1]; i++) {
         for(let j = X[0]; j < X[1]; j++) {
             item = document.createElement("div");
+            item.style.backgroundColor = "";
             item.setAttribute("square-id", (j + (Math.sqrt(gameboard.length) * i)));
             item.addEventListener("click", selectPiece);
             
@@ -141,6 +142,11 @@ function selectPiece(item) {
             moves.findIndex(value => value[0] === parseInt(item.target.getAttribute("square-id"))) >= 0) {
         item.target.style.backgroundColor = "rgb(255, 255, 32)";
         selected = parseInt(item.target.getAttribute("square-id"));
+
+        let move = moves.filter(value => value[0] === selected);
+        for(let i = 0; i < move.length; i++) {
+            document.querySelector('[square-id="'+move[i][1]+'"]').style.backgroundColor = "rgb(255, 192, 32)";
+        }
     }
     else if(selected !== undefined &&
             moves.findIndex(value => value[1] === parseInt(item.target.getAttribute("square-id")) &&
@@ -152,11 +158,25 @@ function selectPiece(item) {
         gameboard[parseInt(item.target.getAttribute("square-id"))] = gameboard[selected];
         gameboard[selected] = 0;
         game.push([selected, parseInt(item.target.getAttribute("square-id"))]);
+
+        let move = moves.filter(value => value[0] === selected);
+        for(let i = 0; i < move.length; i++) {
+            document.querySelector('[square-id="'+move[i][1]+'"]').style.backgroundColor = "";
+        }
+
         selected = undefined;
         onTurn = Math.abs(onTurn - 1);
         if(parseInt(item.target.getAttribute("square-id")) % (gameboard.length - 1) === 0) {}
         else generateMoves();
         displayGame();
+    }
+    else if(selected === parseInt(item.target.getAttribute("square-id"))) {
+        document.querySelector('[square-id="'+selected+'"]').style.backgroundColor = "";
+        let move = moves.filter(value => value[0] === selected);
+        for(let i = 0; i < move.length; i++) {
+            document.querySelector('[square-id="'+move[i][1]+'"]').style.backgroundColor = "";
+        }
+        selected = undefined;
     }
 }
 
