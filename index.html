@@ -13,10 +13,15 @@
     <div class="container" id="field"></div>
     <p class="container" id="boardSize"></p>
     <div class="container" id="direction">
-        <button id="north" type="button" onclick="moveScreen(this);">NORTH</button>
-        <button id="south" type="button" onclick="moveScreen(this);">SOUTH</button>
-        <button id="west" type="button" onclick="moveScreen(this);">WEST</button>
-        <button id="east" type="button" onclick="moveScreen(this);">EAST</button>
+        <div></div>
+        <button id="north" type="button" onclick="moveScreen(this);">^<br>|</button>
+        <div></div>
+        <button id="west" type="button" onclick="moveScreen(this);"><--</button>
+        <div></div>
+        <button id="east" type="button" onclick="moveScreen(this);">--></button>
+        <div></div>
+        <button id="south" type="button" onclick="moveScreen(this);">|<br>v</button>
+        <div></div>
     </div>
     <div class="container" id="options">
         <label for="size">
