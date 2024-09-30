@@ -5,6 +5,10 @@
     font-size: 16px;
 }
 
+body {
+    background-color: rgb(192, 255, 255);
+}
+
 h1 {
     background-color: rgb(64, 240, 255);
     padding-block: 8px;
