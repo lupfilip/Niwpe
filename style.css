@@ -89,7 +89,12 @@ input {
     }
 
     #board {
-        height: 320px;
+        width: 100%;
+        height: auto;
+    }
+
+    #board p {
+        font-size: 16px;
     }
 
     .container {

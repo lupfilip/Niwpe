@@ -33,19 +33,34 @@ function createBoard(field) {
     gameboard = new Array(size * size);
 
     size = (size <= 8 ? size : 8);
-    board.style.gridTemplateColumns = "repeat("+size+", 1fr)";
-    board.style.gridTemplateRows = "repeat("+size+", 1fr)";
+    board.style.gridTemplateColumns = "1fr repeat("+size+", 3fr) 1fr";
+    board.style.gridTemplateRows = "1fr repeat("+size+", 3fr) 1fr";
 
     let item;
-    for(let i = 0; i < size; i++) {
-        for(let j = 0; j < size; j++) {
-            item = document.createElement("div");
-            item.setAttribute("square-id", (j + (size * i)));
-            if((i + j) % 2 === 0) {
-                item.classList.add("dark");
+    for(let i = 0; i < size + 2; i++) {
+        for(let j = 0; j < size + 2; j++) {
+            if(i % (size+1) === 0 && j % (size+1) === 0) {
+                item = document.createElement("div");
+            }
+            else if(i % (size+1) === 0) {
+                item = document.createElement("p");
+                item.innerHTML = j;
+            }
+            else if(j % (size+1) === 0) {
+                item = document.createElement("p");
+                item.innerHTML = i;
             }
             else {
-                item.classList.add("light");
+                item = document.createElement("div");
+                item.setAttribute("square-id", (j-1 + (size * (i-1))));
+                item.addEventListener("click", selectPiece);
+
+                if((i + j) % 2 === 0) {
+                    item.classList.add("dark");
+                }
+                else {
+                    item.classList.add("light");
+                }
             }
 
             board.appendChild(item);
@@ -87,21 +102,34 @@ function displayGrid() {
     let item;
     for(let i = Y[0]; i < Y[1]; i++) {
         for(let j = X[0]; j < X[1]; j++) {
-            item = document.createElement("div");
-            item.style.backgroundColor = "";
-            item.setAttribute("square-id", (j + (Math.sqrt(gameboard.length) * i)));
-            item.addEventListener("click", selectPiece);
-            
-            if(gameboard[j + Math.sqrt(gameboard.length) * i] === 1) item.style.backgroundImage = 'url("image/wnp.png")';
-            else if(gameboard[j + Math.sqrt(gameboard.length) * i] === 2) item.style.backgroundImage = 'url("image/wn.png")';
-            else if(gameboard[j + Math.sqrt(gameboard.length) * i] === 3) item.style.backgroundImage = 'url("image/bnp.png")';
-            else if(gameboard[j + Math.sqrt(gameboard.length) * i] === 4) item.style.backgroundImage = 'url("image/bn.png")';
-
-            if((i + j) % 2 === 0) {
-                item.classList.add("dark");
+            if((i-Y[0]) % (Y[1]-Y[0]-1) === 0 && (j-X[0]) % (X[1]-X[0]-1) === 0) {
+                item = document.createElement("div");
+            }
+            else if((i-Y[0]) % (Y[1]-Y[0]-1) === 0) {
+                item = document.createElement("p");
+                item.innerHTML = j+1;
+            }
+            else if((j-X[0]) % (X[1]-X[0]-1) === 0) {
+                item = document.createElement("p");
+                item.innerHTML = i+1;
             }
             else {
-                item.classList.add("light");
+                item = document.createElement("div");
+                item.style.backgroundColor = "";
+                item.setAttribute("square-id", (j + (Math.sqrt(gameboard.length) * i)));
+                item.addEventListener("click", selectPiece);
+                
+                if(gameboard[j + (Math.sqrt(gameboard.length) * i)] === 1) item.style.backgroundImage = 'url("image/wnp.png")';
+                else if(gameboard[j + (Math.sqrt(gameboard.length) * i)] === 2) item.style.backgroundImage = 'url("image/wn.png")';
+                else if(gameboard[j + (Math.sqrt(gameboard.length) * i)] === 3) item.style.backgroundImage = 'url("image/bnp.png")';
+                else if(gameboard[j + (Math.sqrt(gameboard.length) * i)] === 4) item.style.backgroundImage = 'url("image/bn.png")';
+    
+                if((i + j) % 2 === 0) {
+                    item.classList.add("dark");
+                }
+                else {
+                    item.classList.add("light");
+                }
             }
 
             board.appendChild(item);
@@ -119,25 +147,25 @@ function displayGrid() {
 
 function moveScreen(dir) {
     if(dir.id === "south") {
-        if(Y[1] >= Math.sqrt(gameboard.length)) return;
+        if(Y[1] > Math.sqrt(gameboard.length)) return;
         else {
             Y[0]++; Y[1]++;
         }
     }
     else if(dir.id === "north") {
-        if(Y[0] <= 0) return;
+        if(Y[0] < 0) return;
         else {
             Y[0]--; Y[1]--;
         }
     }
     else if(dir.id === "east") {
-        if(X[1] >= Math.sqrt(gameboard.length)) return;
+        if(X[1] > Math.sqrt(gameboard.length)) return;
         else {
             X[0]++; X[1]++;
         }
     }
     else if(dir.id === "west") {
-        if(X[0] <= 0) return;
+        if(X[0] < 0) return;
         else {
             X[0]--; X[1]--;
         }
