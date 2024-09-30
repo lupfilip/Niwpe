@@ -6,11 +6,11 @@
 }
 
 body {
-    background-color: rgb(192, 255, 255);
+    background-color: rgb(224, 255, 240);
 }
 
 h1 {
-    background-color: rgb(64, 240, 255);
+    background-color: rgb(64, 255, 240);
     padding-block: 8px;
     font-size: 32px;
 }
@@ -29,7 +29,7 @@ h1 {
 button {
     border: 0;
     border-radius: 8px;
-    background-color: rgb(64, 240, 255);
+    background-color: rgb(64, 255, 240);
     color: rgb(32, 32, 32);
     margin: 8px;
     padding: 4px;
