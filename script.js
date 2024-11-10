@@ -32,7 +32,7 @@ function createBoard(field) {
     document.getElementById("boardSize").innerHTML = "Board size: " + size + 'x' + size;
     gameboard = new Array(size * size);
 
-    size = (size <= 8 ? size : 8);
+    size = (size <= 10 ? size : 10);
     board.style.gridTemplateColumns = "1fr repeat("+size+", 3fr) 1fr";
     board.style.gridTemplateRows = "1fr repeat("+size+", 3fr) 1fr";
 
