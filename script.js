@@ -100,7 +100,7 @@ function displayGrid() {
     board.innerHTML = "";
 
     let item;
-    for(let i = Y[0]; i < Y[1]; i++) {
+    for(let i = Y[1] - 1; i >= Y[0]; i--) {
         for(let j = X[0]; j < X[1]; j++) {
             if((i-Y[0]) % (Y[1]-Y[0]-1) === 0 && (j-X[0]) % (X[1]-X[0]-1) === 0) {
                 item = document.createElement("div");
