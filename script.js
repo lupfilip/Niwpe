@@ -147,15 +147,15 @@ function displayGrid() {
 
 function moveScreen(dir) {
     if(dir.id === "south") {
-        if(Y[1] > Math.sqrt(gameboard.length)) return;
-        else {
-            Y[0]++; Y[1]++;
-        }
-    }
-    else if(dir.id === "north") {
         if(Y[0] < 0) return;
         else {
             Y[0]--; Y[1]--;
+        }
+    }
+    else if(dir.id === "north") {
+        if(Y[1] > Math.sqrt(gameboard.length)) return;
+        else {
+            Y[0]++; Y[1]++;
         }
     }
     else if(dir.id === "east") {
